@@ -65,7 +65,7 @@
          scss
             2-1. test.scss
       ```
-
+   - Live Sass Compiler 설치하면 Live Server 도 같이 설치된다. Live Server = 테스팅 서버
 
 
 ## 1.2. 프로젝트별 setting 설정하기 (Tip 4번참고)
@@ -82,7 +82,38 @@
          ]
       }
       ```
-       
 
 
-# SASS(CSS Preprocessor
+# 1.3 Live Server
+   - html 페이지에서 오른쪽 마우스 클릭 > Open With Live Server 클릭 (브라우저로 연결 > 페이지 오픈)
+   - 또는 아래(상태 표시줄) Go Live 버튼을 클릭해준다. 
+   - html 페이지 수정 작업 시, Liver Server로 열린 브라우저에서 자동 확인이 된다.
+      > Live Server 열었을 때, Port 에러가 날 경우, 아래 코드를 사용자 설정 .json 파일에서 입력 후 다시 Open With Liver Server로 열어준다.
+      >  > - 사용자 설정 json 파일에서 아래 코드를 입력해준다
+   ```
+   "LiveServer.settings.port": 0
+   ```
+   - Go Live를 닫고 싶을 땐, 아래 (상태표시줄에서) Port:  부분을 클릭해주면 된다.
+
+
+
+## 2. Sass 
+## 3. Sass Lint
+
+# SASS(SCSS) Preprocessor
+css 작성(생성)을 위한 작고 가벼운 언어이고, Sass와 Scss가 있다.
+- Sass : SCSS와 작성하는데 있어서 구조적 차이가 있고 작성이 번거롭고 복잡할 수 있다.
+- SCSS : 기존에 알던 CSS와 유사하게 작성할 수 있기 때문에 친근하게 느껴져 배우기가 쉽다. ★
+
+## 1. Sass 컴파일러 방식
+- VS Code + Live Sass Compiler ★
+- Ruby Gem을 이용한 컴파일러 
+- Node.js NPM을 이용한 컴파일러
+- Ruby, Node.js 을 이용한 컴파일러는 Scss에 대해 알고 난 후 배워도 무방하다. (=복잡하다)
+
+## 2. Watch Sass
+1. .scss 파일을 열면 아래(상태표시줄) Wahch Sass 버튼이 보여진다
+2. Wahch Sass 을 클릭하면 컴파일러되면서 .css 파일이 자동 생성이 된다.
+3. Wahch Sass 누르고 난 후 해당 부분이 Watching.. 으로 바뀌는데 이 경우 .scss 파일을 작업하면서 저장을 누르면 css 파일에 자동으로 파일이 컴파일러 된다.
+4. .css 파일에 자동 적용되지 않게 하려면 watching.. 버튼을 클릭해주면 된다.
+5. html 페이지에 css 파일을 link 해준다. (scss 파일이 아님!!)
