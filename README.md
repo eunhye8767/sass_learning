@@ -84,7 +84,7 @@
       ```
 
 
-# 1.3 Live Server
+## 1.3 Live Server
    - html 페이지에서 오른쪽 마우스 클릭 > Open With Live Server 클릭 (브라우저로 연결 > 페이지 오픈)
    - 또는 아래(상태 표시줄) Go Live 버튼을 클릭해준다. 
    - html 페이지 수정 작업 시, Liver Server로 열린 브라우저에서 자동 확인이 된다.
@@ -100,10 +100,13 @@
 ## 2. Sass 
 ## 3. Sass Lint
 
+
+
 # SASS(SCSS) Preprocessor
 css 작성(생성)을 위한 작고 가벼운 언어이고, Sass와 Scss가 있다.
 - Sass : SCSS와 작성하는데 있어서 구조적 차이가 있고 작성이 번거롭고 복잡할 수 있다.
 - SCSS : 기존에 알던 CSS와 유사하게 작성할 수 있기 때문에 친근하게 느껴져 배우기가 쉽다. ★
+
 
 ## 1. Sass 컴파일러 방식
 - VS Code + Live Sass Compiler ★
@@ -116,4 +119,7 @@ css 작성(생성)을 위한 작고 가벼운 언어이고, Sass와 Scss가 있�
 2. Wahch Sass 을 클릭하면 컴파일러되면서 .css 파일이 자동 생성이 된다.
 3. Wahch Sass 누르고 난 후 해당 부분이 Watching.. 으로 바뀌는데 이 경우 .scss 파일을 작업하면서 저장을 누르면 css 파일에 자동으로 파일이 컴파일러 된다.
 4. .css 파일에 자동 적용되지 않게 하려면 watching.. 버튼을 클릭해주면 된다.
-5. html 페이지에 css 파일을 link 해준다. (scss 파일이 아님!!)
+
+
+## 3. 컴파일러된 css 파일 연결
+1. .scss 파일이 아닌 컴파일러된  .css 파일을 html 문서에 link
