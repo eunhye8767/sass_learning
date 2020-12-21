@@ -1,4 +1,14 @@
-// Nesting -> tree 구조
+// mixin
+@mixin fontSizeBgColor($fontSize:20px, $bgColor:#fff) {
+  font-size: $fontSize;
+  background-color: $bgColor;
+}
+// 기본 인자 값이 none 으로 되어 있어서 없을 경우 기본값이 적용된다.
+// & > a {} 영역 참고
+@mixin linkStyle($textColor, $textDeco: none) {
+  color: $textColor;
+  text-decoration: $textDeco; 
+}
 
 html {
     font-size: 18px;
@@ -20,8 +30,10 @@ a {
 }
 
 #box1 {
-    font-size: 40px;
-    background-color: #ffcccc;
+    // font-size: 40px;
+    // background-color: #ffcccc;
+
+    @include fontSizeBgColor(40px, #ffcccc);
 
     border-radius: 20px;
     border: 3px solid #f00;
@@ -43,41 +55,36 @@ a {
     }
 
     & > a {
-      color: #a22;
-      text-decoration: none;  
+      // color: #a22;
+      // text-decoration: none;  
+      @include linkStyle(#a22);
       &:hover {
-        color: #000;
-        text-decoration: underline;
+        // color: #000;
+        // text-decoration: underline;
+        @include linkStyle(#000, underline);
       }
     }
     
 }
 
 #box1 #box2 {
-    font-size: 20px;
-    background-color: #e9e9e9;
+    // font-size: 20px;
+    // background-color: #e9e9e9;
+
+    @include fontSizeBgColor($bgColor: #e9e9e9);
 
     border-radius: 20px;
     border: 3px solid #f00;
     box-shadow: 0px 3px 11px 0px rgba(0, 0, 0, 0.75);
 
     & > a {
-      color: #ee6633;
-      text-decoration: none;  
+      // color: #ee6633;
+      // text-decoration: none;  
+      @include linkStyle(#ee6633);
       &:hover {
-        color: #a22;
-        text-decoration: underline;
+        // color: #a22;
+        // text-decoration: underline;
+        @include linkStyle(#a22, underline);
       }
     }
 }
-
-// @media screen and (max-width: 500px) {
-//   #box1 {
-//     font-size: 20px;
-//   }
-// }
-// @media screen and (min-width: 501px) and (max-width: 900px) {
-//   #box1 {
-//     font-size: 24px;
-//   }
-// }
