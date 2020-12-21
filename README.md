@@ -142,3 +142,142 @@ $bg-color: #00f; ($변수명: 속성값;)
    width: 100px;
 }
 ```
+## 02. Nesting (네스팅)
+1. Nesting (네스팅) - tree 구조 (포함관계)
+```
+#box1 {
+   font-size: 40px;
+   background-color: #ffcccc;
+
+   border-radius: 20px;
+   border: 3px solid #f00;
+   box-shadow: 0px 3px 11px 0px rgba(0, 0, 0, 0.75);
+}
+
+#box1 > a {
+   color: #a22;
+   text-decoration: none;
+}
+```
+
+위 구조를 아래와 같이 바꿀 수 있다.
+이 기능을 Nesting (네스팅).
+
+```
+#box1 {
+   font-size: 40px;
+   background-color: #ffcccc;
+
+   border-radius: 20px;
+   border: 3px solid #f00;
+   box-shadow: 0px 3px 11px 0px rgba(0, 0, 0, 0.75);
+
+   a {
+      color: #a22;
+      text-decoration: none;  
+   }
+}
+
+```
+2. &(앰퍼샌드) 를 이용해 바로 하위요소에 적용하기
+- & = 자기자신을 지칭, 즉 여기선 #box1
+- #box1 의 바로 하위요소 a 를 선택하고자 할 때
+- & > a
+```
+#box1 {
+    font-size: 40px;
+    background-color: #ffcccc;
+
+    border-radius: 20px;
+    border: 3px solid #f00;
+    box-shadow: 0px 3px 11px 0px rgba(0, 0, 0, 0.75);
+
+    & > a {
+      color: #a22;
+      text-decoration: none;  
+      &:hover {
+        color: #000;
+        text-decoration: underline;
+      }
+    }
+}
+```
+& > a 부분은 css 파일에서 아래와 같이 확인이 된다.
+```
+#box1 {
+  font-size: 40px;
+  background-color: #ffcccc;
+  border-radius: 20px;
+  border: 3px solid #f00;
+  box-shadow: 0px 3px 11px 0px rgba(0, 0, 0, 0.75);
+}
+
+#box1 > a {
+  color: #a22;
+  text-decoration: none;
+}
+
+#box1 > a:hover {
+  color: #000;
+  text-decoration: underline;
+}
+```
+
+3. & 을 이용해 css 적용하기
+- & 은 자기 자신을 지칭, 자기 자신을 나타내는 이름 그대로도 나타낸다.
+- & = #box1. 즉, #box1-title = &-title 로도 쓸 수 있다.
+```
+//#box1-title
+&-title {
+   font-style: italic;
+   text-decoration: underline;
+}
+```
+
+4. 중복되는 코드가 있을 때
+```
+&, &-title {
+   border-radius: 20px;
+   border: 3px solid #f00;
+}
+```
+```
+#box1, #box1-title {
+   border-radius: 20px;
+   border: 3px solid #f00;
+}
+```
+
+5. 네스팅 기능을 이용한 구조
+```
+<div class="box1">
+   <div class="box2">
+      <div class="box3">
+      </div>
+   <div>
+<div>
+```
+1번, 기존 css처럼
+```   
+.box1 .box2 .box3 {}
+```
+2번, 네스팅 문법대로 (엄격하게 네스팅으로만 작성하지 않아도 된다.)
+```
+.box {
+   .box2 {
+      .box3 {
+
+      }
+   }
+}
+```
+3번, 네스팅 & 기본 css 처럼
+```
+.box1 {
+   .box2 .box3 {
+
+   }
+}
+```
+- 알아보기 쉽게 작성을 하면 된다.
+- 엄격한 sass 네스팅 문법으론 2번처럼 하면 된다.
