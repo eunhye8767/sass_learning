@@ -386,3 +386,23 @@ css 작성(생성)을 위한 작고 가벼운 언어이고, Sass와 Scss가 있�
 ```
 @extend %boxShape;
 ```
+
+## 5.6. Partial (파셜)
+- 여러 코드들을 묶어서 별도의 다른 파일로 나눠서 저장하고 그 파일을 가져다가 쓸 수 있는 Partial(파셜) 기능.
+- mixin, extend 등 특정 .scss 파일에서만 쓰는 것이 아니라 ".scss 파일에서 공용으로 쓸 수 있게 하고싶을 때"
+   #### 5.6.1 _mixins.scss 파일을 만들고 mixin 코드를 저장한다.
+   - partial 은 반드시 _ 로 파일명을 만든다. _mixins.scss
+   - .scss 파일을 _ 로 시작을 하면 컴파일이 되질 않는다. (_mixins.scss 로 할 경우, _mixins.css  로 컴파일 되지 않음!!)
+   ```
+   _mixins.scss
+   partial
+      _styles.scss
+   ```
+   - _mixins.scss 파일을 불러와야 하는 파일에서 최상단에 @import "파일명이름"; 써 준다
+   - 파일명이름을 쓸 땐, _(언더바) 와 .scss(확장자) 는 빼고 파일명이름만 쓴다.
+   - 현재 VS Code 에서 partial - import 적용할 때 "확장 다시시작" 관련 메세지창이 보여지는데 해당 부분은 버그로 
+   다시시작 버튼을 클릭해주면 몇 초후에 Watch Sass 버튼 보여진다. Watch Sass 클릭하면 다시 자동 컴파일 된다.
+   ```
+   @import "mixins";
+   @import "partial/styles";
+   ```
