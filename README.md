@@ -406,3 +406,6 @@ css 작성(생성)을 위한 작고 가벼운 언어이고, Sass와 Scss가 있�
    @import "mixins";
    @import "partial/styles";
    ```
+
+## 5.7. Partial Import Error Solution
+- Partial 작업 시 오류 났던 부분은 VS Code 확장프로그램 "Color Highlight" 오류로 colorize 확장프로그램으로 변경
