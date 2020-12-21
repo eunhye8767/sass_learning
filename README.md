@@ -409,3 +409,55 @@ css 작성(생성)을 위한 작고 가벼운 언어이고, Sass와 Scss가 있�
 
 ## 5.7. Partial Import Error Solution
 - Partial 작업 시 오류 났던 부분은 VS Code 확장프로그램 "Color Highlight" 오류로 colorize 확장프로그램으로 변경
+
+## 5.8. if문
+- 속성값을 주는 mixin 만든다   
+```
+@mixin textAndBgColor($textColor, $bgColor) {
+   color: $textColor;
+   background: $bgColor;
+}
+```
+- if문을 줄 mixin을 만든다
+```
+@mixin theme($mood) {
+   @if $mood == 'light' {
+      @include textAndBgColor(#333, #ff0);
+   }
+   @else if $mood == 'dark' {
+      @include textAndBgColor(#fff, #000);
+   }
+   @else {
+      @include textAndBgColor(#f00, #aaa);
+   }
+}
+```
+- 영역별로 @include를 이용해 theme를 적용해준다
+```
+#box1 {
+   @include theme('light');
+}
+#box2 {
+   @include theme('dark');
+}
+#box3 {
+   @include theme('');
+}
+```
+- .css 파일에서 아래와 같이 보여진다.
+```
+#box1 {
+  color: #333;
+  background: #ff0;
+}
+
+#box2 {
+  color: #fff;
+  background: #000;
+}
+
+#box3 {
+  color: #f00;
+  background: #aaa;
+}
+```
