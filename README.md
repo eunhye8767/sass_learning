@@ -281,3 +281,21 @@ $bg-color: #00f; ($변수명: 속성값;)
 ```
 - 알아보기 쉽게 작성을 하면 된다.
 - 엄격한 sass 네스팅 문법으론 2번처럼 하면 된다.
+
+## 03. Nesting - Media Queries (네스팅 - 미디어쿼리)
+```
+@media screen and (max-width: 500px) {
+  #box1 {
+    font-size: 20px;
+  }
+}
+```
+위 코드를 아래와 같이 표기한다.
+```
+#box1 {
+   font-size: 40px;
+   @media screen and (max-width: 500px) {
+      font-size: 20px;
+   }
+}
+```

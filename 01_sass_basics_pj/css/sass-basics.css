@@ -20,6 +20,8 @@ a {
 #box1 {
   font-size: 40px;
   background-color: #ffcccc;
+  border-radius: 20px;
+  border: 3px solid #f00;
   box-shadow: 0px 3px 11px 0px rgba(0, 0, 0, 0.75);
 }
 
@@ -27,14 +29,22 @@ a {
   background-color: #ccc;
 }
 
-#box1, #box1-title {
-  border-radius: 20px;
-  border: 3px solid #f00;
+@media screen and (max-width: 500px) {
+  #box1:hover {
+    background-color: #999;
+  }
 }
 
-#box1-title {
-  font-style: italic;
-  text-decoration: underline;
+@media screen and (max-width: 500px) {
+  #box1 {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 501px) and (max-width: 900px) {
+  #box1 {
+    font-size: 24px;
+  }
 }
 
 #box1 > a {
