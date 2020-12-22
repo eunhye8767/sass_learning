@@ -129,7 +129,7 @@ css 작성(생성)을 위한 작고 가벼운 언어이고, Sass와 Scss가 있�
 ## 5.1. Variables (변수)
    - 변수를 선언하고 중복되는 값에 적용을 해준다.
    - 변수 선언은 '무조건' $ 로 시작한다.
-   - 변수명은 영문으로 시작해야하고 숫자, -(대쉬), _(언더바) 만 포함할 수 있다.
+   - 변수명은 영문으로 시작해야하고 숫자, -(대쉬), _(언더스코어) 만 포함할 수 있다.
    - 선언한 변수는 css 문법에서 속성명 : 변수 로 쓴다.
    ```
    $bg-color: #00f; ($변수명: 속성값;)
@@ -399,7 +399,7 @@ css 작성(생성)을 위한 작고 가벼운 언어이고, Sass와 Scss가 있�
       _styles.scss
    ```
    - _mixins.scss 파일을 불러와야 하는 파일에서 최상단에 @import "파일명이름"; 써 준다
-   - 파일명이름을 쓸 땐, _(언더바) 와 .scss(확장자) 는 빼고 파일명이름만 쓴다.
+   - 파일명이름을 쓸 땐, _(언더스코어) 와 .scss(확장자) 는 빼고 파일명이름만 쓴다.
    - 현재 VS Code 에서 partial - import 적용할 때 "확장 다시시작" 관련 메세지창이 보여지는데 해당 부분은 버그로 
    다시시작 버튼을 클릭해주면 몇 초후에 Watch Sass 버튼 보여진다. Watch Sass 클릭하면 다시 자동 컴파일 된다.
    ```
@@ -461,3 +461,157 @@ css 작성(생성)을 위한 작고 가벼운 언어이고, Sass와 Scss가 있�
   background: #aaa;
 }
 ```
+
+## 5.9 Wrap up - Boxes Project (복습)
+### 5.9.1 Wrap up - Boxes Project - 1
+   #### 5.9.1 - 1. 작업영역(프로젝트별) 설정하기 (.vscode > settings.json)
+   - This is Default. : 기본 저장 방법
+   - You can add more : 기본 저장 방법 외 추가적으로 저장할 때 ( ex. min.css 파일을 같이 만들때)
+   - savePath : 기본값은 null (scss 파일 기준 폴더에 저장)
+   - savePath : scss 파일 기준으로 작업할 땐 ~, root 폴더를 기준으로 할 땐 /
+   ```
+   {
+      "liveSassCompile.settings.formats":[
+         // This is Default.
+         {
+            "format": "expanded",
+            "extensionName": ".css",
+            "savePath": null
+         },
+         // You can add more
+         {
+            "format": "compressed",
+            "extensionName": ".min.css",
+            "savePath": "/dist/css"
+         }
+      ]
+   }
+   ```
+
+   #### 5.9.1 - 2 &(앰퍼샌드) 사용 시 주의사항
+   - & 를 쓰면 상속 구조가 되지 않는다.
+   - .scss 파일에서 보면 .box > .box-inner > .box-inner-title
+   ```
+   .box {
+
+      width: 300px;
+      height: 300px;
+      padding: 20px;
+
+      &, &-inner {
+         border: 3px solid $color-black;
+      }
+
+      // .box-inner
+      &-inner {
+         
+         padding: 10px;
+         height: 40px;
+         background-color: #ccc;
+
+         // .box-inner-title
+         &-title {
+               font-size: 20px;
+               color: $color-white;
+               background-color: rgba(0,0,0,.5);
+         }
+      }
+   }
+   ```
+   - 컴파일된 .css 파일에서 확인을 해보면 상속 구조가 아닌 별도로 적용 된다.
+   ```
+   .box {
+      width: 300px;
+      height: 300px;
+      padding: 20px;
+   }
+
+   .box, .box-inner {
+      border: 3px solid #000;
+   }
+
+   .box-inner {
+      padding: 10px;
+      height: 40px;
+      background-color: #ccc;
+   }
+
+   .box-inner-title {
+      font-size: 20px;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.5);
+   }
+   ```
+   - & 를 이용해 상속구조로 하고 싶을 땐 아래 코드 참고
+   ```
+   .box {
+
+      width: 300px;
+      height: 300px;
+      padding: 20px;
+
+      &, & &-inner {
+         border: 3px solid $color-black;
+      }
+
+      // .box-inner
+      & &-inner {
+         
+         padding: 10px;
+         height: 40px;
+         background-color: $color-grey;
+
+         // .box-inner-title
+         &-title {
+               font-size: 20px;
+               color: $color-white;
+               // background-color: rgba(0,0,0,.5);
+               background-color: rgba($color-black,.5);
+         }
+      }
+   }
+   ```
+   - .box .box-inner .box-inner-title 처럼은 사용할 수 없어서 & 은 상황에 따라 적절하게!
+   ```
+   .box {
+      width: 300px;
+      height: 300px;
+      padding: 20px;
+   }
+
+   .box, .box .box-inner {
+      border: 3px solid #000;
+   }
+
+   .box .box-inner {
+      padding: 10px;
+      height: 40px;
+      background-color: #ccc;
+   }
+
+   .box .box-inner-title {
+      font-size: 20px;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.5);
+   }
+   ```
+
+   #### 5.9.1 - 3 변수를 이용해 RGBA 값 적용하기
+   - 변수 $color-black : #000; 를 이용해 background-color: rgba(0,0,0,.5) 적용하는법
+   ```
+   // 변수 
+   $color-black: #000;
+
+   // Nesting
+   .box {
+
+      .box-inner {
+
+         .box-inner-title {
+            background-color: rgba($color-black,.5);
+         }
+      }
+   }
+   ```
+
+<!-- ### 5.9.2 Wrap up - Boxes Project - 2 -->
