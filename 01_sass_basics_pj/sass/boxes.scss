@@ -1,52 +1,31 @@
-// 변수
-$color-white: #fff;
-$color-black: #000;
-$color-grey: #ccc;
-$color-grey-light: #efefef;
-$color-blue: #00f;
+@import "abstracts/variables";
+@import "abstracts/mixins";
 
-$border-color: $color-blue;
-
-// mixin
-@mixin width-height-padding($w, $h, $p) {
-    width: $w;
-    height: $h;
-    padding: $p;
-}
-@mixin pos-abs-center() {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-@mixin pos-abs-center-horizontal() {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    transform: translateX(-50%);
-}
-@mixin pos-abs-center-vertical() {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-//
-body {
-    margin: 0;
-    background-color: $color-grey-light;
-    font-family: sans-serif;
-}
+@import "base/base";
 
 // Nesting
 .box {
 
     @include width-height-padding(300px, 300px, 20px);
-    @include pos-abs-center();
+    
+    // @include pos-abs-center(); extend로 적용해보기
+    @extend %pos-abs-center;
 
     &, &-inner {
         border: 3px solid $border-color;
+    }
+
+    @include mq('phone') {
+        width: 100%;
+        border: none;
+    }
+    @include mq('tablet-land') {
+        border: 2px solid $border-color;
+    }
+    @include mq('desktop-big') {
+        width: 600px;
+        padding: 50px;
+        border: 10px solid $border-color;
     }
 
     // .box-inner
@@ -61,6 +40,13 @@ body {
             color: $color-white;
             // background-color: rgba(0,0,0,.5);
             background-color: rgba($color-black,.5);
+
+            @include mq('phone') {
+                font-size: 40px;
+            }
+            @include mq('tablet-land') {
+                font-size: 30px;
+            }
         }
     }
 }

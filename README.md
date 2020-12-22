@@ -614,4 +614,83 @@ css 작성(생성)을 위한 작고 가벼운 언어이고, Sass와 Scss가 있�
    }
    ```
 
-<!-- ### 5.9.2 Wrap up - Boxes Project - 2 -->
+### 5.9.2 Wrap up - Boxes Project - 2
+   ## 5.9.2 - 1 Partial (파셜)
+   - partial(파셜) 작업을 위해 abstracts 폴더를 생성
+   - _(언더스코어)로 .scss 파일을 만든다. (_로 시작하는 파일은 컴파일 되지 않음★)
+   - 불러올 땐, 불러와야 하는 파일에 @import "폴더/파일명"; 
+   - 파일명을 적을 땐, 앞에 _(언더스코어)를 빼고, 뒤에 .scss 확장자도 뺀다!
+   - 01_sass_basics_pj/sass/boxes.scss 파일 참고
+   ```
+   @import "abstracts/variables";
+   @import "abstracts/mixins";
+   ```
+
+   - 기본적인 레이아웃 구조 등 설정에 대한 css는 base > _base.scss 로
+   - base 폴더를 따로 만들어서 기본 구조 (body 등) 관리
+
+   ## 5.9.3 - 2 Media Queries (미디어쿼리) ★★★
+   - _mixin.scss 파일에서 미디어쿼리 문법을 적용한 mixin을 만든다
+   ```
+   @mixin mq() {
+      <!-- 미디어쿼리 기준 적용 -->
+      @media screen and (min-width: 1201px) {
+      }
+   }
+   ```
+   - @media { } 괄호 안에 @content; 를 써준다
+   - @content; 를 써주면 원하는 코드를 작성할 수 있다
+   ```
+   @mixin mq() {
+      @media screen and (min-width: 1201px) {
+         @content;
+      }
+   }
+   ```
+   - mixin - mq() 를 include 로 불러온다
+   - { } (괄호) 안에 코드를 작성해주면 된다
+   ```
+   @include mq() {
+      border: 10px solid $border-color;
+   }
+   ```
+
+   ## 5.9.3 - 3 mixin & Media Queries & if문 ★★★
+   - mixin 에서 if문을 이용하여 브라우저 뷰너비에 따라 미디어 쿼리 적용
+   ```
+   @mixin mq($screen-width) {
+      @if $screen-width == 'phone' {
+         // phone
+         @media screen and (max-width: 600px) {
+               @content;
+         }
+      }
+      @else if $screen-width == 'tablet-land' {
+         // tablet-land
+         @media screen and (min-width: 601px) and (max-width: 899px) {
+               @content;
+         }
+      }
+      @else if $screen-width == 'desktop-big' {
+         // desktop-big
+         @media screen and (min-width: 1201px) {
+               @content;
+         }
+      }
+      @else {
+         // desktop
+      }
+   }
+   ```
+   - include에서 인자 자리에 이름을 넣으면 if문 조건(뷰너비 기준)에 따라 css 값 적용
+   ```
+   @include mq('phone') {
+      border: none;
+   }
+   @include mq('tablet-land') {
+      border: 2px solid $border-color;
+   }
+   @include mq('desktop-big') {
+      border: 10px solid $border-color;
+   }
+   ```

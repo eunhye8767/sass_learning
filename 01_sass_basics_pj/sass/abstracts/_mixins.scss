@@ -1,0 +1,58 @@
+// mixin
+@mixin width-height-padding($w, $h, $p) {
+    width: $w;
+    height: $h;
+    padding: $p;
+}
+
+@mixin pos-abs-center() {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+@mixin pos-abs-center-horizontal() {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+}
+@mixin pos-abs-center-vertical() {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@mixin mq($screen-width) {
+    @if $screen-width == 'phone' {
+        // phone
+        @media screen and (max-width: 600px) {
+            @content;
+        }
+    }
+    @else if $screen-width == 'tablet-land' {
+        // tablet-land
+        @media screen and (min-width: 601px) and (max-width: 899px) {
+            @content;
+        }
+    }
+    @else if $screen-width == 'desktop-big' {
+        // desktop-big
+        @media screen and (min-width: 1201px) {
+            @content;
+        }
+    }
+    @else {
+        // desktop
+    }
+}
+
+
+// extend 로 바꿔서 적용하기
+%pos-abs-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
