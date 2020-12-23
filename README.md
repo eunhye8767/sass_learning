@@ -694,3 +694,18 @@ css 작성(생성)을 위한 작고 가벼운 언어이고, Sass와 Scss가 있�
       border: 10px solid $border-color;
    }
    ```
+
+# 6. Partial 분할 폴더 구조 ★★★
+   #### 6.1. abstracts
+   - sass가 제공하는 기능적인 것들에 대한 정의
+   - @mixin과 변수와 같은 css로 구체적 변환 전 추상적 정의들
+
+   #### 6.2. base
+   - css의 기본적이고 기능적인 설정
+
+   #### 6.3. components 
+   - 버튼이나 메뉴같은 마우스 컨트롤 요소들
+
+   #### 6.4. layout
+   - 페이지 내용 구성에 따른 각 부분별 요소
+   - header, main, footer
