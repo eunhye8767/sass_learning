@@ -1,0 +1,143 @@
+.nav {
+
+    &-checkbox {
+        display: none;
+    }
+
+    &-button {
+        background-color: #c4e3ff;
+        width: 7rem;
+        height: 6rem;
+        position: fixed;
+        top: 7rem;
+        right: 8rem;
+        z-index: 2000;
+        cursor: pointer;
+        border-radius: 2px;
+        box-shadow: 0 1rem 1rem rgba(0,0,0,.1);
+        text-align: center;
+    }
+
+    &-bg {
+        background-image: radial-gradient($color-primary, $color-secondary);
+        width: 7rem;
+        height: 6rem;
+        border-radius: 2px;
+        position: fixed;
+        top: 7rem;
+        right: 8rem;
+        z-index: 1000;
+        transition: .8s;
+    }
+
+    &-checkbox:checked ~ .nav-bg {
+        transform: scale(80);
+    }
+
+    &-icon {
+        margin-top: 3rem;
+        display: inline-block;
+        position: relative;
+
+        &::before {
+            top: -.8rem;
+        }
+
+        &::after {
+            top: .8rem;
+        }
+
+        &::before, &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            transition: .2s;
+        }
+
+        &, &::before, &::after {
+            width: 3rem;
+            height: 2px;
+            background-color: #333;
+            display: inline-block;
+        }
+    }
+
+    &-button:hover &-icon::before { 
+        top: -1rem;
+    }
+    &-button:hover &-icon::after {
+        top: 1rem;
+    }
+
+    // 체크박스 선택 시 아이콘 모양 변경
+    &-checkbox:checked + &-button &-icon {
+        background-color: transparent;
+    }
+    &-checkbox:checked + &-button &-icon::before {
+        top: 0;
+        transform: rotate(45deg);
+    }
+    
+    &-checkbox:checked + &-button &-icon::after {
+        top: 0;
+        transform: rotate(-45deg);
+    }
+
+
+    // nav-body
+    &-body {
+        position: fixed;
+        top: 0;
+        left: -120%;
+        width: 100vw;
+        height: 100vh;
+        z-index: 1500;
+        opacity: 0;
+        transition: .8s;
+    }
+
+    &-list {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        list-style: none;
+        width: 100%;
+        text-align: center;
+    }
+
+    &-item {
+
+    }
+
+    &-link {
+        display: inline-block;
+        font-size: 3rem;
+        font-weight: 300;
+        color: $color-white;
+        text-decoration: none;
+        text-transform: uppercase;
+        padding: 1rem 2rem;
+
+        background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
+        background-size: 220%;
+
+        transition: .4s;
+
+        &:hover {
+            color: $color-primary;
+            background-position: 100%;
+            transform: translateX(1rem);
+        }
+
+        span {
+            display: inline-block;
+            margin-right: 1.5rem;
+        }
+    }
+
+    &-checkbox:checked ~ &-body { 
+        left: 0;
+        opacity: 1;
+    }
+}
