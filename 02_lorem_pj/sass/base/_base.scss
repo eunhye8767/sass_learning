@@ -1,6 +1,10 @@
 // 구글폰트 - Lato & 나눔고딕
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300&family=Nanum+Gothic:wght@400;700;800&display=swap');
 
+// icon Font
+// https://material.io/resources/icons
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
 * {
     margin: 0;
     padding: 0;
@@ -12,6 +16,6 @@ html {
 }
 
 body {
-    padding: 3rem;
+    padding: 0rem;
     font-family: 'Nanum Gothic', sans-serif;
 }
