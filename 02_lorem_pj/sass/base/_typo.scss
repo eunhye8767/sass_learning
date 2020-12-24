@@ -1,0 +1,24 @@
+h2 {
+    padding: 1rem 0;
+    font-size: 2.4rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    background: linear-gradient(left, $color-primary 0%, $color-secondary 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    transition: .5s;
+
+    &:hover {
+        padding-left: 1.5rem;
+    }
+
+}
+
+h3 {
+    padding: .5rem 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: $color-grey-dark;
+    text-transform: uppercase;
+}
