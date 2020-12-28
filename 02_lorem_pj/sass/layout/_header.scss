@@ -22,6 +22,11 @@ header {
         animation-iteration-count: 5;
         animation-delay: 2s;
         animation-fill-mode: backwards;
+
+        @include mq('small-screen-3') {
+            left: 3rem;
+            font-size: 2rem;
+        }
     }
     
     #header-text {
@@ -33,6 +38,10 @@ header {
         letter-spacing: -.1rem;
         font-weight: 700;
 
+        @include mq('small-screen-3') {
+            left: 3rem;
+        }
+        
         &-main {
             font-size: 7.2rem;
             line-height: 7.2rem;
@@ -41,6 +50,16 @@ header {
             animation-duration: 1s;
             animation-delay: 1s;
             animation-fill-mode: backwards;
+
+            @include mq('small-screen-3') {
+                font-size: 3rem;
+                line-height: 1;
+                padding-right: 3rem;
+
+                & > br {
+                    display: none;
+                }
+            }
         }
 
         &-sub {
@@ -51,6 +70,12 @@ header {
             animation-duration: 1s;
             animation-delay: 1.5s;
             animation-fill-mode: backwards;
+
+            @include mq('small-screen-3') {
+                padding-right: 3rem;
+                font-size: 1.2rem;
+            }
+
         }
 
     }
